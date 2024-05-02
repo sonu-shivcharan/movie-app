@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.gradient-bg{
+    background:linear-gradient(transparent, #161616);
+    color: #fff;
+    padding-top:5rem;
+    position:absolute;
+    bottom:0;
+}
