@@ -3,15 +3,15 @@ import MovieCard from "./MovieCard";
 import axios from "axios"
 function Movies() {
   const [movies, setMovies] = useState([]);
-  
+  const apiKey = process.env.VITE_APP;
+  console.log(apiKey);
   useEffect(()=>{
       const options = {
         method: "GET",
         url: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNmU4YWQ2ZDM4NGVhYTA5ZGQwZjIwZjE2MGE1ZGIzNiIsInN1YiI6IjY2MzMzYWRiYWQ1OWI1MDEyYjZkMzQ0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LcISIURxDtXpN9hn4mI0L4_FNjh3r-QUbR-bFLt-5fU",
+          Authorization: apiKey,
         },
       };
       axios
