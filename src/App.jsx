@@ -8,12 +8,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   
+  const [movies, setMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
+  function addToWatchlist(movieObj){
+    setWatchlist([...watchlist, movieObj]);
+    console.log(watchlist)
+  }
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<> <Banner/> <Movies /></>} />
+        <Route path="/" element={<> <Banner/> <Movies setMovies={setMovies} movies={movies} addToWatchlist={addToWatchlist} watchlist={watchlist}/></>} />
         <Route path="/watchlist" element={<WatchList />} />
       </Routes>
     </BrowserRouter>
