@@ -1,9 +1,16 @@
 import React from "react";
 
-function MovieCard({ movieObj, addToWatchlist, watchlist }) {
+function MovieCard({
+  movieObj,
+  addToWatchlist,
+  removeFromWatchlist,
+  watchlist,
+}) {
   function isContain(movie) {
-    if (watchlist.indexOf(movie) > -1) {
-      return true;
+    for (let i = 0; i < watchlist.length; i++) {
+      if (watchlist[i].id == movie.id) {
+        return true;
+      }
     }
     return false;
   }
@@ -17,7 +24,10 @@ function MovieCard({ movieObj, addToWatchlist, watchlist }) {
       }}
     >
       {isContain(movieObj) ? (
-        <div className="absolute right-0 m-2 p-1 bg-gray-900/80 text-xl rounded">
+        <div
+          onClick={() => removeFromWatchlist(movieObj)}
+          className="absolute right-0 m-2 p-1 bg-gray-900/80 text-xl rounded"
+        >
           &#10060;
         </div>
       ) : (
