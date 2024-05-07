@@ -5,11 +5,16 @@ import axios from "axios"
 function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchlist}) {
   
   const [currPage, setPage] = useState(1);
+  
   function handleNextPage(){
+    const bannerHeight = document.getElementById("banner").clientHeight;
+    document.documentElement.scrollTop=bannerHeight;
     setPage(currPage+1);
   }
   function handlePrevPage(){
     if(currPage!=1){
+      const bannerHeight = document.getElementById("banner").clientHeight;
+      document.documentElement.scrollTop=bannerHeight;
       setPage(currPage-1);
     }
   }
@@ -27,7 +32,7 @@ function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchli
         
   }, [currPage])
   return (
-    <div>
+    <div id="#movies-container">
         <h2 className="font-bold text-center text-xl my-6">Trending</h2>
       <div className="flex flex-wrap justify-center gap-10">
      {

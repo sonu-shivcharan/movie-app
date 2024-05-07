@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import genres from "../utilities/genres.js"
 
 function WatchList({ watchlist, setWatchlist }) {
   const [searchVal, setSearchInput] = useState("");
-  
+  const [genreList, setGenres] = useState(['All Genres']);
+
   function sortDescending(){
     let sorted = watchlist.sort((a, b)=>b.vote_average-a.vote_average);
     setWatchlist([...sorted]);
@@ -14,9 +16,21 @@ function WatchList({ watchlist, setWatchlist }) {
   function handleSearch(e){
     setSearchInput(e.target.value);
   }
+  useEffect(()=>{
+    let newGenreList = watchlist.map((movie)=>genres[movie.genre_ids[0]])
+    setGenres(['All movies', newGenreList]);
+    console.log(newGenreList)
+  },[watchlist])
   return (
     <div>
-      <div className="flex justify-center">
+
+      
+      <div className="flex justify-center items-center flex-col p-4">
+
+        {
+          genreList.map((genre)=> <button className="p-2 mx-2 bg-blue-400 rounded text-white ">{genre}</button>)
+        }
+     
         <input
           type="text"
           placeholder="Search for movies"
@@ -42,7 +56,8 @@ function WatchList({ watchlist, setWatchlist }) {
             </tr>
           </thead>
           <tbody>
-            {watchlist.filter((movie)=>{
+            {
+            watchlist.filter((movie)=>{
               return movie.title.toLowerCase().includes(searchVal.toLocaleLowerCase())
             }).map((movie) => {
               return (
@@ -56,7 +71,7 @@ function WatchList({ watchlist, setWatchlist }) {
                   </td>
                   <td>{movie.vote_average.toFixed(2)}</td>
                   <td>{movie.popularity}</td>
-                  <td>Action</td>
+                  <td>{genres[movie.genre_ids[0]]}</td>
                 </tr>
               );
             })}

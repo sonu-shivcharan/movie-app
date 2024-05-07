@@ -2,7 +2,7 @@ import React from 'react'
 
 function Banner() {
   return (
-    <div
+    <div id="banner"
     className="h-[80vh] bg-gray-400 bg-cover bg-center"
     style={{
       backgroundImage:
