@@ -16,7 +16,7 @@ function MovieCard({
   }
   return (
     <div
-      className="bg-cover bg-center rounded-[20px] overflow-hidden relative hover:scale-105 duration-100"
+      className="movie-card bg-cover bg-center rounded-[20px] overflow-hidden relative hover:scale-105 duration-100"
       style={{
         backgroundImage: `url(https://images.tmdb.org/t/p/original/${movieObj.poster_path})`,
         width: "200px",

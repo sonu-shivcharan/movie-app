@@ -11,3 +11,14 @@ html{
     position:absolute;
     bottom:0;
 }
+.movie-card{
+    background-color:rgb(162, 168, 175) ; ;
+    animation: load 0.8s linear infinite alternate-reverse;
+}
+@keyframes load {
+    0%{
+        background-color: rgb(212, 212, 212);
+    }100%{
+        background-color:rgb(162, 168, 175) ;
+    }
+}

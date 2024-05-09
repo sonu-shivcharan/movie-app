@@ -17,8 +17,8 @@ function WatchList({ watchlist, setWatchlist }) {
     setSearchInput(e.target.value);
   }
   useEffect(()=>{
-    let newGenreList = watchlist.map((movie)=>genres[movie.genre_ids[0]])
-    setGenres(['All movies', newGenreList]);
+    let newGenreList = watchlist.map((movie)=>genres[movie.genre_ids[0]]);
+    setGenres(['All movies', ...newGenreList]);
     console.log(newGenreList)
   },[watchlist])
   return (
@@ -26,11 +26,12 @@ function WatchList({ watchlist, setWatchlist }) {
 
       
       <div className="flex justify-center items-center flex-col p-4">
+        <div className="felx justify-center items-center">
 
         {
-          genreList.map((genre)=> <button className="p-2 mx-2 bg-blue-400 rounded text-white ">{genre}</button>)
+          genreList.map((genre)=> <button className="px-4 p-2 m-2 bg-blue-400 rounded text-white " key={genre}>{genre}</button>)
         }
-     
+     </div>
         <input
           type="text"
           placeholder="Search for movies"
