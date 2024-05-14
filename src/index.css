@@ -4,6 +4,16 @@
 html{
     scroll-behavior: smooth;
 }
+#watchlist{
+    overflow: hidden;
+}
+#watchlist .table-container{
+    width: 100vw;
+    overflow-x: auto;
+}
+#watchlist .table-container > table{
+    min-width: 600px;
+}
 .gradient-bg{
     background:linear-gradient(transparent, #161616);
     color: #fff;

@@ -1,18 +1,20 @@
-import React from 'react'
+import React from "react";
 
-function Banner() {
+function Banner({ bannerDetails }) {
   return (
-    <div id="banner"
-    className="h-[80vh] bg-gray-400 bg-cover bg-center"
-    style={{
-      backgroundImage:
-        "url(https://cdn.marvel.com/content/1x/avengersendgame_lob_mas_mob_01.jpg)",
-        position:"relative",
-    }}
-  >
-    <div className='w-full py-8 text-white text-center font-bold text-2xl absolute bottom-0 gradient-bg'>Avengers Endgame</div>
-  </div>
-  )
+    <div
+      id="banner"
+      className="h-[80vh] bg-gray-400 bg-cover bg-center"
+      style={{
+        backgroundImage: `url(https://images.tmdb.org/t/p/original/${bannerDetails.backdropPath})`,
+        position: "relative",
+      }}
+    >
+      <div className="w-full py-8 text-white text-center font-bold text-2xl absolute bottom-0 gradient-bg">
+        {bannerDetails.title}
+      </div>
+    </div>
+  );
 }
 
-export default Banner
+export default Banner;

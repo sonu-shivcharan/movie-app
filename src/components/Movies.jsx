@@ -2,7 +2,7 @@ import React, { useEffect, useState} from "react";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import axios from "axios"
-function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchlist}) {
+function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchlist, setBannerDetails}) {
   
   const [currPage, setPage] = useState(1);
   
@@ -18,13 +18,15 @@ function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchli
       setPage(currPage-1);
     }
   }
-  const BASE_URL  = 'https://api.themoviedb.org/3/movie/popular';
+  const BASE_URL  = 'https://api.themoviedb.org/3/movie/now_playing';
   useEffect(()=>{
   let url = `${BASE_URL}?api_key=d6e8ad6d384eaa09dd0f20f160a5db36&language=en-US&page=${currPage}`
       axios.get(url)
         .then(function (response){
+          let results = response.data.results
           console.log(response.data);
-          setMovies(response.data.results);
+          setMovies(results);
+         setBannerDetails({title:results[0].title, backdropPath: results[0].backdrop_path});
         })
         .catch(function (error) {
           console.error(error);

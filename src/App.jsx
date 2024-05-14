@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [bannerDetails, setBannerDetails]=useState({title:"", backdropPath:""});
   const [watchlist, setWatchlist] = useState([]);
   useEffect(() => {
     let itemsFromLocalStore = localStorage.getItem("movieApp");
@@ -35,13 +36,14 @@ function App() {
           element={
             <>
               {" "}
-              <Banner />{" "}
+              <Banner moviesObj={movies} bannerDetails={bannerDetails}/>{" "}
               <Movies
                 setMovies={setMovies}
                 movies={movies}
                 addToWatchlist={addToWatchlist}
                 removeFromWatchlist={removeFromWatchlist}
                 watchlist={watchlist}
+                setBannerDetails={setBannerDetails}
               />
             </>
           }
@@ -49,7 +51,7 @@ function App() {
         <Route
           path="/watchlist"
           element={
-            <WatchList watchlist={watchlist} setWatchlist={setWatchlist} />
+            <WatchList watchlist={watchlist} setWatchlist={setWatchlist} removeFromWatchlist={removeFromWatchlist} />
           }
         />
       </Routes>

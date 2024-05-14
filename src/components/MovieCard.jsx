@@ -16,7 +16,7 @@ function MovieCard({
   }
   return (
     <div
-      className="movie-card bg-cover bg-center rounded-[20px] overflow-hidden relative hover:scale-105 duration-100"
+      className="movie-card bg-cover bg-center rounded-[20px] overflow-hidden relative hover:scale-105 duration-100 hover:shadow-xl"
       style={{
         backgroundImage: `url(https://images.tmdb.org/t/p/original/${movieObj.poster_path})`,
         width: "200px",
@@ -40,7 +40,7 @@ function MovieCard({
       )}
 
       <div className="gradient-bg p-2 text-center font-bold py-4 w-full">
-        {movieObj.title}
+        {movieObj.title} {movieObj.release_date.substr(0,4)}
       </div>
     </div>
   );
