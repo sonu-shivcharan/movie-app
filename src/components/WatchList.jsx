@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import WatchListTable from "./WatchListTable.jsx";
 import genres from "../utilities/genres.js";
 
 function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
@@ -6,18 +7,10 @@ function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
   const [genreList, setGenres] = useState([]);
   //used for genre based filter
   const [currGenre, setCurrGenre] = useState("All movies");
-
-  function sortDescending() {
-    let sorted = watchlist.sort((a, b) => b.vote_average - a.vote_average);
-    setWatchlist([...sorted]);
-  }
-  function sortAscending() {
-    let sorted = watchlist.sort((a, b) => a.vote_average - b.vote_average);
-    setWatchlist([...sorted]);
-  }
   function handleSearch(e) {
     setSearchInput(e.target.value);
   }
+
   useEffect(() => {
     let newGenreList = ["All movies"];
     for (let movie of watchlist) {
@@ -33,7 +26,7 @@ function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
   }
   return (
     <div id="watchlist">
-      <div className="flex justify-center items-center flex-col p-4">
+      <div className="flex justify-center items-center flex-col p-4 ">
         <div className="flex justify-center items-center flex-wrap">
           {genreList.map((genre) => {
             if (genre == currGenre) {
@@ -66,70 +59,18 @@ function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
           onChange={handleSearch}
         />
       </div>
-      <div className="p-4 table-container">
-        <table className=" w-full">
-          <thead className="bg-blue-100">
-            <tr className=" p-4 h-[3rem]">
-              <th>Name</th>
-              <th>
-                <div className="flex items-center justify-center">
-                  <div onClick={sortAscending} className="p-2">
-                    <i className="fa-solid fa-arrow-down"></i>
-                  </div>
-                  <div className="px-2">Rating</div>
-                  <div onClick={sortDescending} className="p-2">
-                    <i className="fa-solid fa-arrow-up"></i>
-                  </div>
-                </div>
-              </th>
-              <th>Popularity</th>
-              <th>Genre</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {watchlist
-              .filter((movie) => {
-                if (currGenre != "All movies") {
-                  return (
-                    movie.title
-                      .toLowerCase()
-                      .includes(searchVal.toLocaleLowerCase()) &&
-                    genres[movie.genre_ids[0]] == currGenre
-                  );
-                } else {
-                  return movie.title
-                    .toLowerCase()
-                    .includes(searchVal.toLocaleLowerCase());
-                }
-              })
-              .map((movie) => {
-                return (
-                  <tr className="text-center border-b-[3px]" key={movie.id}>
-                    <td className="flex items-center ">
-                      <img
-                        className="w-[150px] p-2"
-                        src={`https://images.tmdb.org/t/p/original/${movie.poster_path}`}
-                      ></img>
-                      <div className="mx-4 font-bold">{movie.title}</div>
-                    </td>
-                    <td>{movie.vote_average.toFixed(2)}</td>
-                    <td>{movie.popularity}</td>
-                    <td>{genres[movie.genre_ids[0]]}</td>
-                    <td>
-                      <button
-                        className="border-[1px] border-red-500 rounded p-2 text-red-600 font-bold shadow-red-700 hover:shadow-xl transition duration-300"
-                        onClick={()=>removeFromWatchlist(movie)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
+
+      {watchlist.length == 0 ? (
+        <div><h1 className="text-center font-bold text-[1.5rem] p-4 mt-5"><i className="fa fa-xmark"></i> There is nothing in the watchlist</h1></div>
+      ) : (
+        <WatchListTable
+          watchlist={watchlist}
+          setWatchlist={setWatchlist}
+          currGenre={currGenre}
+          removeFromWatchlist={removeFromWatchlist}
+          searchVal={searchVal}
+        />
+      )}
     </div>
   );
 }

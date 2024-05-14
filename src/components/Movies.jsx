@@ -24,7 +24,7 @@ function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchli
       axios.get(url)
         .then(function (response){
           let results = response.data.results
-          console.log(response.data);
+          console.log("data successfully fetched")
           setMovies(results);
          setBannerDetails({title:results[0].title, backdropPath: results[0].backdrop_path});
         })

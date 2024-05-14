@@ -21,10 +21,10 @@ function App() {
     let newWatchlist = [...watchlist, movieObj];
     setWatchlist(newWatchlist);
     localStorage.setItem("movieApp", JSON.stringify(newWatchlist));
-    console.log(newWatchlist);
   }
   function removeFromWatchlist(movieObj) {
     let newWatchlist = watchlist.filter((movie) => movie.id != movieObj.id);
+    localStorage.setItem("movieApp", JSON.stringify(newWatchlist));
     setWatchlist(newWatchlist);
   }
   return (
@@ -55,7 +55,11 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+      <div id="footer" className="min-h-[200px] mt-4 flex justify-center items-center">
+        <h2>Powered BY TMDB </h2>
+
+      </div>
+          </BrowserRouter>
   );
 }
 

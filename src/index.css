@@ -4,6 +4,10 @@
 html{
     scroll-behavior: smooth;
 }
+body{
+    padding-top:3.5rem;
+    position: relative;
+}
 #watchlist{
     overflow: hidden;
 }
@@ -24,6 +28,10 @@ html{
 .movie-card{
     background-color:rgb(162, 168, 175) ; ;
     animation: load 0.8s linear infinite alternate-reverse;
+}
+#footer{
+    background-color: rgb(233, 236, 238);
+    margin-top: 5rem;
 }
 @keyframes load {
     0%{
