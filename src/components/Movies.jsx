@@ -20,7 +20,7 @@ function Movies({setMovies, movies, addToWatchlist, removeFromWatchlist, watchli
   }
   const BASE_URL  = 'https://api.themoviedb.org/3/movie/now_playing';
   useEffect(()=>{
-  let url = `${BASE_URL}?api_key=d6e8ad6d384eaa09dd0f20f160a5db36&language=en-US&page=${currPage}`
+  let url = `${BASE_URL}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=${currPage}`
       axios.get(url)
         .then(function (response){
           let results = response.data.results
