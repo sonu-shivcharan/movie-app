@@ -19,6 +19,7 @@ const genres = {
     10752: "War",
     37: "Western"
   };
-  export default genres;
+ 
+export default genres;
   
   

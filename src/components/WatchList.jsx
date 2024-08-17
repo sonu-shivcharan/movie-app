@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import WatchListTable from "./WatchListTable.jsx";
 import genres from "../utilities/genres.js";
 
+
 function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
   const [searchVal, setSearchInput] = useState("");
   const [genreList, setGenres] = useState([]);
