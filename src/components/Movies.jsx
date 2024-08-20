@@ -26,9 +26,7 @@ function Movies({
   }
   const BASE_URL = "https://api.themoviedb.org/3";
   useEffect(() => {
-    let url = `${BASE_URL}/movie/now_playing?api_key=${
-      import.meta.env.VITE_API_KEY
-    }&language=en-US&page=${currPage}`;
+    let url = `${BASE_URL}/movie/now_playing?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=${currPage}`;
     axios
       .get(url)
       .then(function (response) {
@@ -53,7 +51,7 @@ function Movies({
       url: `${BASE_URL}/search/movie?query=${query}&include_adult=false&language=en-US&page=${currPage}`,
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_AUTH_KEY}`
+        Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_KEY}`
       }
     };
     axios
