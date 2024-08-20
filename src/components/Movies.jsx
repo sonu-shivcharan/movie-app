@@ -45,6 +45,7 @@ function Movies({
       });
   }, [currPage]);
   function searchMovie() {
+    if(!searchQuery) return;
     const query = encodeURIComponent(searchQuery);
     const options = {
       method: 'GET',
@@ -71,19 +72,19 @@ function Movies({
       <div className="flex justify-center my-6">
         <div
           id="searcBarContainer"
-          className="sticky top-0 flex bg-gray-100 max-w-[350px] w-full rounded-xl"
+          className="sticky mx-3 top-0 flex bg-gray-100 max-w-[350px] w-full rounded-xl"
         >
           <input
             type="text"
             placeholder="Search for movies"
-            className="bg-gray-100 w-full rounded-xl p-3 outline-none"
+            className="bg-gray-100 w-full rounded-xl p-3 px-5 outline-none"
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
           />
           <img
-            className="w-[50px] px-2 rounded-xl bg-black"
+            className="w-[50px] px-2 rounded-xl bg-blue-400 shadow hover:scale-95 duration-200 hover:bg-blue-500"
             src="./search.svg"
             alt=""
             onClick={searchMovie}

@@ -62,7 +62,7 @@ function WatchList({ watchlist, setWatchlist, removeFromWatchlist }) {
       </div>
 
       {watchlist.length == 0 ? (
-        <div><h1 className="text-center font-bold text-[1.5rem] p-4 mt-5"><i className="fa fa-xmark"></i> There is nothing in the watchlist</h1></div>
+        <div className="min-h-[300px] flex justify-center items-center"><h1 className="text-center font-bold text-[1.5rem] p-4 mt-5 text-gray-400"><i className="fa fa-xmark"></i> There is nothing in the watchlist</h1></div>
       ) : (
         <WatchListTable
           watchlist={watchlist}
