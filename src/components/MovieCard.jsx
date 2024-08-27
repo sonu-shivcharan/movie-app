@@ -5,6 +5,7 @@ function MovieCard({
   addToWatchlist,
   removeFromWatchlist,
   watchlist,
+  displayMovieDetails
 }) {
   function isContain(movie) {
     for (let i = 0; i < watchlist.length; i++) {
@@ -21,6 +22,12 @@ function MovieCard({
         backgroundImage: `url(https://images.tmdb.org/t/p/original/${movieObj.poster_path})`,
         width: "200px",
         height: "350px",
+      }}
+      onClick={(e)=>{
+        const target = e.target.classList;
+        if(target.contains("movie-card") || target.contains("gradient-bg")){
+          displayMovieDetails(movieObj)
+        }
       }}
     >
       {isContain(movieObj) ? (

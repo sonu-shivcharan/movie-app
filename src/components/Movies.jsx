@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import axios from "axios";
+import MoveDetails from "./MoveDetails";
 function Movies({
   setMovies,
   movies,
@@ -12,6 +13,12 @@ function Movies({
 }) {
   const [currPage, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isHiddenDetails, setIsHiddenDetails] = useState(true);
+  const [movieDetails, setMovieDetails] = useState([]);
+  function displayMovieDetails(movieObj){
+    setIsHiddenDetails(false);
+    setMovieDetails(movieObj);
+  }
   function handleNextPage() {
     const bannerHeight = document.getElementById("banner").clientHeight;
     document.documentElement.scrollTop = bannerHeight;
@@ -100,9 +107,12 @@ function Movies({
             removeFromWatchlist={removeFromWatchlist}
             watchlist={watchlist}
             key={movie.title}
+            displayMovieDetails={displayMovieDetails}
           />
         ))}
       </div>
+      {!isHiddenDetails?<MoveDetails setIsHiddenDetails={setIsHiddenDetails} movieDetails={movieDetails}/>:""}
+      
       <Pagination
         currPage={currPage}
         handleNextPage={handleNextPage}

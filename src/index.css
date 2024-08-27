@@ -22,7 +22,7 @@ body{
     background:linear-gradient(transparent, #161616);
     color: #fff;
     padding-top:5rem;
-    position:absolute;
+    position:absolute;  
     bottom:0;
 }
 .movie-card{
@@ -32,6 +32,18 @@ body{
 #footer{
     background-color: rgb(233, 236, 238);
     margin-top: 5rem;
+}
+#details-overlay>div{
+    animation: pop-up 0.3s ease 1;
+}
+@keyframes pop-up {
+    0%{
+        transform: scale(0.8);
+        opacity: 0;
+    }100%{
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 @keyframes load {
     0%{
