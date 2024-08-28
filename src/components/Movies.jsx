@@ -56,7 +56,7 @@ function Movies({
     const query = encodeURIComponent(searchQuery);
     const options = {
       method: 'GET',
-      url: `${BASE_URL}/search/movie?query=${query}&include_adult=false&language=en-US&page=${currPage}`,
+      url: `${BASE_URL}/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_KEY}`
